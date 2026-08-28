@@ -216,7 +216,8 @@ section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   place-items: center;
-  gap: 2.5rem;
+  gap: 5rem;
+  column-gap: 4rem;
 }
 
 .service-box {
