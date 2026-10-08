@@ -333,7 +333,7 @@ section {
     display: block;
     cursor: pointer;
     z-index: 1000;
-  }
+  }    
   
   .navbar {
     position: absolute;
@@ -394,6 +394,8 @@ section {
     text-align: center;
     margin: 2rem 0;
   }
+}
+
 /* Lightbox / Image Zoom */
 .zoomable {
   cursor: zoom-in;
@@ -456,5 +458,4 @@ section {
 
 .lightbox-close:hover {
   color: var(--main-color);
-}
 }
