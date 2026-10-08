@@ -6,30 +6,41 @@ let navbar = document.querySelector('.navbar');
 };
 
 // Image zoom / lightbox
-const zoomableImgs = document.querySelectorAll('.zoomable');
+const projectsBox = document.querySelector('.projects-box');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.querySelector('.lightbox-close');
 
-zoomableImgs.forEach((img) => {
-  img.addEventListener('click', () => {
-    lightboxImg.src = img.src;
-    lightbox.classList.add('active');
-  });
+projectsBox.addEventListener('click', (e) => {
+  const card = e.target.closest('.projects-card');
+  if (!card) return;
+
+  const img = e.target.closest('.zoomable') || card.querySelector('.zoomable');
+  if (!img) return;
+
+  lightboxImg.src = img.src;
+  lightboxImg.alt = img.alt;
+  lightbox.classList.add('active');
 });
 
 lightboxClose.addEventListener('click', () => {
-  lightbox.classList.remove('active');
+  closeLightbox();
 });
 
 lightbox.addEventListener('click', (e) => {
   // close if user clicks the dark background, not the image itself
   if (e.target === lightbox) {
-    lightbox.classList.remove('active');
+    closeLightbox();
   }
 }); 
 
-menuIcon.onclick = () => {
-    menuIcon.classList.toggle('bx-x')
-    navbar.classList.toggle('active');
-};
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  lightboxImg.src = '';
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+    closeLightbox();
+  }
+});
